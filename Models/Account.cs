@@ -5,14 +5,9 @@ using System.Collections.Generic;
 
 namespace PrivateNotes
 {
-    public partial class User
+    public partial class Account
     {
-        public User()
-        {
-            Notes = new HashSet<Note1>();
-        }
-
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         public string Email { get; set; }
 
@@ -21,7 +16,5 @@ namespace PrivateNotes
         public string PasswordHash { get; set; }
 
         public DateTime RegisterDate { get; set; }
-
-        public virtual ICollection<Note1> Notes { get; set; }
     }
 }
