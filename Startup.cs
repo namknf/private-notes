@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PrivateNotes.Models;
 using System;
 
 namespace PrivateNotes
@@ -24,7 +23,7 @@ namespace PrivateNotes
             services.AddRazorPages();
 
             var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-            services.AddDbContext<UserContext>(options =>
+            services.AddDbContext<PrivateNotesContext>(options =>
             options.UseNpgsql(connectionString));
         }
 
