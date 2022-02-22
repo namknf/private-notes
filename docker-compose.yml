@@ -1,0 +1,37 @@
+version: '3.8'
+
+networks:
+  privatenotes-dev:
+    driver: bridge 
+
+services:
+  privatenotes:
+    image: privatenotes:latest
+    depends_on:
+      - "postgres_image"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"     
+    environment:
+      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=private_notes;username=postgres;password='Ye8g6K_r?'"
+    networks:
+      - privatenotes-dev  
+  
+  postgres_image:
+    image: postgres:latest
+    ports:
+      - "5432"
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+      - ./dbscripts/seed.sql :/docker-entrypoint-initdb.d/seed.sql
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "Ye8g6K_r?"
+      POSTGRES_DB: "private_notes"
+    networks:
+      - privatenotes-dev
+volumes:
+  db_volume:
