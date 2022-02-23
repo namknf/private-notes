@@ -23,8 +23,12 @@ namespace PrivateNotes
             services.AddRazorPages();
 
             var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            var config2 = Configuration.GetConnectionString("DefaultConnection");
+
+            // services.AddDbContext<PrivateNotesContext>(options =>
+            // options.UseNpgsql(connectionString));
             services.AddDbContext<PrivateNotesContext>(options =>
-            options.UseNpgsql(connectionString));
+            options.UseNpgsql(config2));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
