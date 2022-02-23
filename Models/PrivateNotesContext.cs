@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-#nullable disable
+﻿#nullable disable
 
 namespace PrivateNotes
 {
+    using Microsoft.EntityFrameworkCore;
+    using PrivateNotes.Models;
+
+    /// <summary>
+    /// db-context.
+    /// </summary>
     public partial class PrivateNotesContext : DbContext
     {
         public PrivateNotesContext()
@@ -16,8 +20,11 @@ namespace PrivateNotes
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
+
         public virtual DbSet<Note> Notes { get; set; }
+
         public virtual DbSet<Note1> Notes1 { get; set; }
+
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

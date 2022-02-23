@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#nullable disable
 
-#nullable disable
-
-namespace PrivateNotes
+namespace PrivateNotes.Models
 {
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// User model.
+    /// </summary>
     public partial class User
     {
         public User()

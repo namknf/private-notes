@@ -1,9 +1,12 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-
-namespace PrivateNotes.Migrations
+﻿namespace PrivateNotes.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+    using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+    /// <summary>
+    /// Migration for db.
+    /// </summary>
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +20,7 @@ namespace PrivateNotes.Migrations
                     email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     password = table.Column<string>(type: "character varying(75)", maxLength: 75, nullable: false),
                     password_hash = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    register_date = table.Column<DateTime>(type: "date", nullable: false)
+                    register_date = table.Column<DateTime>(type: "date", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -31,7 +34,7 @@ namespace PrivateNotes.Migrations
                     note_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     note_date = table.Column<DateTime>(type: "date", nullable: false),
-                    text = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    text = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                 },
                 constraints: table =>
                 {
@@ -47,7 +50,7 @@ namespace PrivateNotes.Migrations
                     Email = table.Column<string>(type: "text", nullable: true),
                     Password = table.Column<string>(type: "text", nullable: true),
                     PasswordHash = table.Column<string>(type: "text", nullable: true),
-                    RegisterDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    RegisterDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -62,7 +65,7 @@ namespace PrivateNotes.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     NoteDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Text = table.Column<string>(type: "text", nullable: true),
-                    NoteUserId = table.Column<int>(type: "integer", nullable: true)
+                    NoteUserId = table.Column<int>(type: "integer", nullable: true),
                 },
                 constraints: table =>
                 {

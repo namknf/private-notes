@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations;
-
 namespace PrivateNotes.Pages
 {
+    using System.ComponentModel.DataAnnotations;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.Extensions.Logging;
+
     public class RegistrationModel : PageModel
     {
         private readonly ILogger<RegistrationModel> _logger;

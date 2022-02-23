@@ -2,8 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    interface IUserRepository<T>
+    internal interface IUserRepository<T>
     {
+        T GetById(int id);
+
         Task<int> Add(T entity);
     }
 }

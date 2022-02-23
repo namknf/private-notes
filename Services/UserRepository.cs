@@ -1,9 +1,11 @@
 ﻿namespace PrivateNotes.Services
 {
-    using PrivateNotes.Models;
+    using System.Linq;
     using System.Threading.Tasks;
+    using PrivateNotes.Models;
 
-    public class UserRepository<T> : IUserRepository<T> where T: BaseModel
+    public class UserRepository<T> : IUserRepository<T>
+        where T : BaseModel
     {
         private readonly PrivateNotesContext _context;
 
@@ -19,6 +21,18 @@
             await _context.SaveChangesAsync();
 
             return result.Entity.Id;
+        }
+
+        public T GetById(int id)
+        {
+            var result = _context.Set<T>().FirstOrDefault(x => x.Id == id);
+
+            if (result == null)
+            {
+                return null;
+            }
+
+            return result;
         }
     }
 }

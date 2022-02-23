@@ -1,9 +1,12 @@
-﻿using System;
+﻿#nullable disable
 
-#nullable disable
-
-namespace PrivateNotes
+namespace PrivateNotes.Models
 {
+    using System;
+
+    /// <summary>
+    /// Note1 model.
+    /// </summary>
     public partial class Note1
     {
         public int Id { get; set; }
