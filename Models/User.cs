@@ -8,14 +8,12 @@ namespace PrivateNotes.Models
     /// <summary>
     /// User model.
     /// </summary>
-    public partial class User
+    public partial class User : BaseModel
     {
         public User()
         {
             Notes = new HashSet<Note1>();
         }
-
-        public int Id { get; set; }
 
         public string Email { get; set; }
 

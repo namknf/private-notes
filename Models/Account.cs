@@ -7,7 +7,7 @@ namespace PrivateNotes.Models
     /// <summary>
     /// Account model.
     /// </summary>
-    public partial class Account
+    public partial class Account : BaseModel
     {
         public int UserId { get; set; }
 
