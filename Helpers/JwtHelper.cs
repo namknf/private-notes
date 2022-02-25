@@ -10,7 +10,7 @@
 
     public static class JwtHelper
     {
-        public static string GenerateJwtToken(this IConfiguration configuration, Account account)
+        public static string GenerateJwtToken(this IConfiguration configuration, User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -18,7 +18,7 @@
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", account.UserId.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
