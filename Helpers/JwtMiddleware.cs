@@ -57,7 +57,7 @@
             }
             catch
             {
-                // todo: need to add logger
+                throw new Exception();
             }
         }
     }
