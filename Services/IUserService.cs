@@ -2,12 +2,13 @@
 {
     using System.Threading.Tasks;
     using PrivateNotes.Models;
+    using PrivateNotes.Pages;
 
     public interface IUserService
     {
-        AuthorizeResponse Authorize(AuthorizeRequest model);
+        AuthorizeResponse Authenticate(AuthorizeRequest model);
 
-        Task<AuthorizeResponse> Register(Account newUser);
+        Task<AuthorizeResponse> Register(RegistrationModel userModel);
 
         User GetById(int id);
     }

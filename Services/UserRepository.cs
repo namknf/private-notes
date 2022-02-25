@@ -1,5 +1,6 @@
 ﻿namespace PrivateNotes.Services
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using PrivateNotes.Models;
@@ -33,6 +34,11 @@
             }
 
             return result;
+        }
+
+        public List<T> GetAll()
+        {
+            return _context.Set<T>().ToList();
         }
     }
 }
