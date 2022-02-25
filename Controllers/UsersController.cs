@@ -1,9 +1,7 @@
 ﻿namespace CustomIdentityApp.Controllers
 {
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using PrivateNotes;
     using PrivateNotes.Models;
     using PrivateNotes.Pages;
     using PrivateNotes.Services;
@@ -23,7 +21,7 @@
         [HttpPost("authenticate")]
         public IActionResult Authenticate(AuthorizeRequest model)
         {
-            var response = _userService.Authorize(model);
+            var response = _userService.Authenticate(model);
 
             if (response == null)
             {
@@ -34,7 +32,7 @@
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(Account userModel)
+        public async Task<IActionResult> Register(RegistrationModel userModel)
         {
             var response = await _userService.Register(userModel);
 
@@ -43,7 +41,7 @@
                 return BadRequest(new { message = "Didn't register!" });
             }
 
-            return Ok(response);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
