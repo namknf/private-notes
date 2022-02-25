@@ -1,10 +1,10 @@
 namespace PrivateNotes.Pages
 {
     using System.ComponentModel.DataAnnotations;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Logging;
+    using PrivateNotes.Models;
 
-    public class RegistrationModel : PageModel
+    public class RegistrationModel : BaseModel
     {
         private readonly ILogger<RegistrationModel> _logger;
 
@@ -14,6 +14,7 @@ namespace PrivateNotes.Pages
         }
 
         [Required]
+        [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
