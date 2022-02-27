@@ -3,8 +3,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using PrivateNotes.Helpers;
     using PrivateNotes.Models;
@@ -27,7 +25,7 @@
         {
             var user = _userRepository
                 .GetAll()
-                .FirstOrDefault(x => x.Email == model.Email && x.PasswordHash == model.PasswordHash);
+                .FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
 
             if (user == null)
             {
@@ -48,6 +46,7 @@
             var response = Authenticate(new AuthorizeRequest
             {
                 Email = user.Email,
+                Password = user.Password,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
             });
 
