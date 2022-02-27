@@ -7,6 +7,7 @@
     using PrivateNotes.Helpers;
     using PrivateNotes.Models;
     using PrivateNotes.Pages;
+    using PrivateNotes.Services.Repositories;
 
     internal class UserService : IUserService
     {

@@ -9,6 +9,7 @@ namespace PrivateNotes
     using Microsoft.Extensions.Hosting;
     using PrivateNotes.Helpers;
     using PrivateNotes.Services;
+    using PrivateNotes.Services.Repositories;
 
     public class Startup
     {
