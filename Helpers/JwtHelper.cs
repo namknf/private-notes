@@ -14,7 +14,7 @@
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            var key = Encoding.ASCII.GetBytes(configuration["Edweat%#5gdv^"]);
+            var key = Encoding.ASCII.GetBytes(configuration["Secret"]);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
