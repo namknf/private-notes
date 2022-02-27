@@ -16,7 +16,5 @@ namespace PrivateNotes.Models
         public string Password { get; set; }
 
         public string PasswordHash { get; set; }
-
-        public DateTime RegisterDate { get; set; }
     }
 }

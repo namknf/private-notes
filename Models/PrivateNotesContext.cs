@@ -66,10 +66,6 @@ namespace PrivateNotes
                     .IsRequired()
                     .HasMaxLength(255)
                     .HasColumnName("password_hash");
-
-                entity.Property(e => e.RegisterDate)
-                    .HasColumnType("date")
-                    .HasColumnName("register_date");
             });
 
             modelBuilder.Entity<Note>(entity =>

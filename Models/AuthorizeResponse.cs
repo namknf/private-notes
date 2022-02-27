@@ -11,7 +11,6 @@
             Email = model.Email;
             Password = model.Password;
             PasswordHash = model.PasswordHash;
-            RegisterDate = model.RegisterDate;
             Notes = model.Notes;
             Token = token;
         }
@@ -23,8 +22,6 @@
         public string Password { get; set; }
 
         public string PasswordHash { get; set; }
-
-        public DateTime RegisterDate { get; set; }
 
         public string Token { get; set; }
 

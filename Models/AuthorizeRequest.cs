@@ -8,6 +8,9 @@
         public string Email { get; init; }
 
         [Required]
+        public string Password { get; init; }
+
+        [Required]
         public string PasswordHash { get; init; }
     }
 }

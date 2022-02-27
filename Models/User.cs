@@ -21,8 +21,6 @@ namespace PrivateNotes.Models
 
         public string PasswordHash { get; set; }
 
-        public DateTime RegisterDate { get; set; }
-
         public string Token { get; set; }
 
         public virtual ICollection<Note1> Notes { get; set; }
