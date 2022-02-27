@@ -57,7 +57,7 @@ namespace PrivateNotes
 
             services.AddScoped(typeof(IUserRepository<>), typeof(UserRepository<>));
 
-            services.AddAutoMapper(typeof(Account));
+            services.AddAutoMapper(typeof(UserProfile));
             services.AddCors();
             services.AddControllers();
         }
