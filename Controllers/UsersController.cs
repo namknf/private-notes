@@ -8,14 +8,19 @@
     using BCryptNet = BCrypt.Net.BCrypt;
 
     [ApiController]
-    [Route("[controller]")]
-    public class UsersController : ControllerBase
+    [Route("Users")]
+    public class UsersController : Controller
     {
         private readonly IUserService _userService;
 
         public UsersController(IUserService userService)
         {
             _userService = userService;
+        }
+
+        public IActionResult Registration()
+        {
+            return View();
         }
 
         [HttpPost("authenticate")]
@@ -41,7 +46,7 @@
                 return BadRequest(new { message = "Didn't register!" });
             }
 
-            return RedirectToAction("Index", "Home");
+            return Ok(response);
         }
     }
 }
