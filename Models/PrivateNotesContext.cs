@@ -19,11 +19,7 @@ namespace PrivateNotes
         {
         }
 
-        public virtual DbSet<Account> Accounts { get; set; }
-
         public virtual DbSet<Note> Notes { get; set; }
-
-        public virtual DbSet<Note1> Notes1 { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
 
@@ -40,51 +36,7 @@ namespace PrivateNotes
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Russian_Russia.1251");
 
-            modelBuilder.Entity<Account>(entity =>
-            {
-                entity.HasKey(e => e.UserId)
-                    .HasName("accounts_pkey");
-
-                entity.ToTable("accounts");
-
-                entity.HasIndex(e => e.Email, "accounts_email_key")
-                    .IsUnique();
-
-                entity.Property(e => e.UserId).HasColumnName("user_id");
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .HasColumnName("email");
-
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(75)
-                    .HasColumnName("password");
-
-                entity.Property(e => e.PasswordHash)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .HasColumnName("password_hash");
-            });
-
             modelBuilder.Entity<Note>(entity =>
-            {
-                entity.ToTable("notes");
-
-                entity.Property(e => e.NoteId).HasColumnName("note_id");
-
-                entity.Property(e => e.NoteDate)
-                    .HasColumnType("date")
-                    .HasColumnName("note_date");
-
-                entity.Property(e => e.Text)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .HasColumnName("text");
-            });
-
-            modelBuilder.Entity<Note1>(entity =>
             {
                 entity.ToTable("Note");
 

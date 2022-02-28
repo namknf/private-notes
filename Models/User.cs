@@ -12,7 +12,7 @@ namespace PrivateNotes.Models
     {
         public User()
         {
-            Notes = new HashSet<Note1>();
+            Notes = new HashSet<Note>();
         }
 
         public string Email { get; set; }
@@ -23,6 +23,6 @@ namespace PrivateNotes.Models
 
         public string Token { get; set; }
 
-        public virtual ICollection<Note1> Notes { get; set; }
+        public virtual ICollection<Note> Notes { get; set; }
     }
 }
