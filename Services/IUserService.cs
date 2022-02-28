@@ -6,7 +6,7 @@
 
     public interface IUserService
     {
-        AuthorizeResponse Authenticate(AuthorizeRequest model);
+        AuthorizeResponse Authenticate(AuthorizationModel model);
 
         Task<AuthorizeResponse> Register(RegistrationModel userModel);
 

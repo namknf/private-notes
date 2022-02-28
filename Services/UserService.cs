@@ -22,7 +22,7 @@
             _mapper = mapper;
         }
 
-        public AuthorizeResponse Authenticate(AuthorizeRequest model)
+        public AuthorizeResponse Authenticate(AuthorizationModel model)
         {
             var user = _userRepository
                 .GetAll()
@@ -44,11 +44,10 @@
 
             var addedUser = await _userRepository.Add(user);
 
-            var response = Authenticate(new AuthorizeRequest
+            var response = Authenticate(new AuthorizationModel
             {
                 Email = user.Email,
                 Password = user.Password,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
             });
 
             return response;

@@ -24,7 +24,7 @@
         }
 
         [HttpPost("authenticate")]
-        public IActionResult Authenticate(AuthorizeRequest model)
+        public IActionResult Authenticate(AuthorizationModel model)
         {
             var response = _userService.Authenticate(model);
 

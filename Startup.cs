@@ -28,8 +28,6 @@ namespace PrivateNotes
             var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
             var config2 = Configuration.GetConnectionString("DefaultConnection");
 
-            // services.AddDbContext<PrivateNotesContext>(options =>
-            // options.UseNpgsql(connectionString));
             services.AddDbContext<PrivateNotesContext>(options =>
             options.UseNpgsql(config2));
 

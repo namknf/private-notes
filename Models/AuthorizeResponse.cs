@@ -25,6 +25,6 @@
 
         public string Token { get; set; }
 
-        public virtual ICollection<Note1> Notes { get; set; }
+        public virtual ICollection<Note> Notes { get; set; }
     }
 }

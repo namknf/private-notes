@@ -1,18 +1,10 @@
 namespace PrivateNotes.Pages
 {
     using System.ComponentModel.DataAnnotations;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.Extensions.Logging;
+    using PrivateNotes.Models;
 
-    public class AuthorizationModel : PageModel
+    public class AuthorizationModel : BaseModel
     {
-        private readonly ILogger<AuthorizationModel> _logger;
-
-        public AuthorizationModel(ILogger<AuthorizationModel> logger)
-        {
-            _logger = logger;
-        }
-
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -21,9 +13,5 @@ namespace PrivateNotes.Pages
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
-        public void OnGet()
-        {
-        }
     }
 }
