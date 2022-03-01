@@ -1,5 +1,5 @@
 ﻿@page
-@model PrivateNotes.Pages.AuthorizationModel
+@model AuthorizationModel
 @{
     ViewData["Title"] = "Authorize";
 }
@@ -7,7 +7,7 @@
 
 <p>You have to register in app.</p>
 
-<form method="post" asp-controller="Account" asp-action="Register">
+<form method="post" asp-controller="Users" asp-action="Authenticate">
     <div asp-validation-summary="ModelOnly"></div>
     <div>
         <label asp-for="Email"></label><br />
