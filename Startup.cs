@@ -1,6 +1,7 @@
 namespace PrivateNotes
 {
     using System;
+    using FluentValidation.AspNetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ namespace PrivateNotes
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using PrivateNotes.Helpers;
+    using PrivateNotes.Models;
     using PrivateNotes.Services;
     using PrivateNotes.Services.Repositories;
 
@@ -21,6 +23,7 @@ namespace PrivateNotes
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
@@ -38,6 +41,10 @@ namespace PrivateNotes
             services.AddAutoMapper(typeof(UserProfile));
             services.AddCors();
             services.AddControllers();
+            services.AddMvc(setup =>
+            {
+                //...mvc setup...
+            }).AddFluentValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
