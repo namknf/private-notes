@@ -1,9 +1,8 @@
 ﻿#nullable disable
 
-namespace PrivateNotes
+namespace PrivateNotes.Models
 {
     using Microsoft.EntityFrameworkCore;
-    using PrivateNotes.Models;
 
     /// <summary>
     /// db-context.

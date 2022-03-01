@@ -2,7 +2,6 @@
 
 namespace PrivateNotes.Models
 {
-    using System;
     using System.Collections.Generic;
 
     /// <summary>
