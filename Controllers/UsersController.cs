@@ -2,11 +2,12 @@
 {
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
     using PrivateNotes.Pages;
     using PrivateNotes.Services;
 
     [ApiController]
-    [Route("Users")]
+    [Route("users")]
     public class UsersController : Controller
     {
         private readonly IUserService _userService;
