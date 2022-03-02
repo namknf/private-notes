@@ -15,7 +15,7 @@
         {
             _userService = userService;
         }
-
+        
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromForm] AuthorizationModel model)
         {
@@ -28,7 +28,7 @@
 
             return Redirect("~/");
         }
-
+        
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromForm] RegistrationModel userModel)
         {
