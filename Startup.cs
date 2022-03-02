@@ -1,9 +1,6 @@
-using PrivateNotes.Entities;
-
 namespace PrivateNotes
 {
     using System;
-    using FluentValidation.AspNetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
@@ -52,15 +49,6 @@ namespace PrivateNotes
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                     options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
-
-            services
-                .AddMvc(options =>
-                {
-                    options.EnableEndpointRouting = false;
-                    options.Filters.Add<ValidationFilter>();
-                })
-                .AddFluentValidation(mvcConfiguration =>
-                    mvcConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
