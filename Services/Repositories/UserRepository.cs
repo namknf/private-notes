@@ -28,11 +28,6 @@
         {
             var result = _context.Set<T>().FirstOrDefault(x => x.Id == id);
 
-            if (result == null)
-            {
-                return null;
-            }
-
             return result;
         }
 
