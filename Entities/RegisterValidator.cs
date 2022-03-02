@@ -5,16 +5,14 @@
 
     public class RegisterValidator : AbstractValidator<RegistrationModel>
     {
-        [System.Obsolete]
-        public RegisterValidator(int length)
+        public RegisterValidator()
         {
             RuleFor(p => p.Email)
-                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotEmpty()
                 .EmailAddress();
 
             RuleFor(p => p.Password)
-                .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("{PropertyName} should be not empty. NEVER!")
+                .NotEmpty()
                 .Length(8, 76);
         }
     }

@@ -53,12 +53,14 @@ namespace PrivateNotes
                     options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
 
-            services.AddFluentValidation(x =>
-            {
-                x.DisableDataAnnotationsValidation = true;
-                x.ImplicitlyValidateChildProperties = true;
-                x.RegisterValidatorsFromAssemblyContaining<RegisterValidator>();
-            });
+            services
+                .AddMvc(options =>
+                {
+                    options.EnableEndpointRouting = false;
+                    options.Filters.Add<ValidationFilter>();
+                })
+                .AddFluentValidation(mvcConfiguration =>
+                    mvcConfiguration.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
