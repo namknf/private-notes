@@ -1,6 +1,6 @@
 ﻿namespace PrivateNotes.Services
 {
-    public class NoteService
+    public class NoteService : INoteService
     {
     }
 }
