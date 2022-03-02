@@ -5,13 +5,14 @@ namespace PrivateNotes.Pages
 
     public class AuthorizationModel : BaseModel
     {
-        [Required]
+        [Required(ErrorMessage = "Email address not specified")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
+        [StringLength(76, MinimumLength = 8, ErrorMessage = "Password length must be at least 8 characters")]
         public string Password { get; set; }
     }
 }
