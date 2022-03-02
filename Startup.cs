@@ -1,3 +1,5 @@
+using PrivateNotes.Entities;
+
 namespace PrivateNotes
 {
     using System;
@@ -12,6 +14,7 @@ namespace PrivateNotes
     using PrivateNotes.Models;
     using PrivateNotes.Services;
     using PrivateNotes.Services.Repositories;
+    using Microsoft.AspNetCore.Authentication.Cookies;
 
     public class Startup
     {
@@ -23,7 +26,6 @@ namespace PrivateNotes
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
@@ -41,10 +43,22 @@ namespace PrivateNotes
             services.AddAutoMapper(typeof(UserProfile));
             services.AddCors();
             services.AddControllers();
-            services.AddMvc(setup =>
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.Cookie.HttpOnly = true;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
+
+            services.AddFluentValidation(x =>
             {
-                //...mvc setup...
-            }).AddFluentValidation();
+                x.DisableDataAnnotationsValidation = true;
+                x.ImplicitlyValidateChildProperties = true;
+                x.RegisterValidatorsFromAssemblyContaining<RegisterValidator>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
