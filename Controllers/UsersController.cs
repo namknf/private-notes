@@ -1,8 +1,8 @@
 ﻿namespace PrivateNotes.Controllers
 {
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using PrivateNotes.Pages;
     using PrivateNotes.Services;
 
@@ -16,7 +16,7 @@
         {
             _userService = userService;
         }
-        
+
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromForm] AuthorizationModel model)
         {
@@ -29,7 +29,7 @@
 
             return Redirect("~/");
         }
-        
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromForm] RegistrationModel userModel)
         {
@@ -37,7 +37,7 @@
 
             if (response == null)
             {
-                return BadRequest(new {message = "Didn't register!"});
+                return BadRequest(new { message = "Didn't register!" });
             }
 
             return Redirect("~/");

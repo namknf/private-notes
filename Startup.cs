@@ -1,6 +1,7 @@
 namespace PrivateNotes
 {
     using System;
+    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,6 @@ namespace PrivateNotes
     using PrivateNotes.Models;
     using PrivateNotes.Services;
     using PrivateNotes.Services.Repositories;
-    using Microsoft.AspNetCore.Authentication.Cookies;
 
     public class Startup
     {

@@ -18,13 +18,12 @@
         [HttpPost("create")]
         public IActionResult Create([FromForm] CreateNoteModel model)
         {
-            //var response = _noteService.Create(model);
+            // var response = _noteService.Create(model);
 
-            //if (response == null)
-            //{
+            // if (response == null)
+            // {
             //    return BadRequest(new { message = "Username or password is incorrect" });
-            //}
-
+            // }
             return Redirect("~/");
         }
     }
