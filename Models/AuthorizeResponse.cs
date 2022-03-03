@@ -10,7 +10,6 @@
             Id = model.Id;
             Email = model.Email;
             Password = model.Password;
-            PasswordHash = model.PasswordHash;
             Notes = model.Notes;
             Token = token;
         }
@@ -20,8 +19,6 @@
         public string Email { get; set; }
 
         public string Password { get; set; }
-
-        public string PasswordHash { get; set; }
 
         public string Token { get; set; }
 

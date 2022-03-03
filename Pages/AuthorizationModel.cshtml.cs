@@ -7,6 +7,7 @@ namespace PrivateNotes.Pages
     {
         [Required(ErrorMessage = "Email address not specified")]
         [Display(Name = "Email")]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]

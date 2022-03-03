@@ -26,16 +26,23 @@
         {
             var user = _userRepository
                 .GetAll()
-                .FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+                .FirstOrDefault(x => x.Email == model.Email);
 
-            if (user == null)
+            if (user != null)
             {
-                return null;
+                user.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+
+                var isValidPassword = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
+
+                if (isValidPassword)
+                {
+                    var token = _configuration.GenerateJwtToken(user);
+
+                    return new AuthorizeResponse(user, token);
+                }
             }
 
-            var token = _configuration.GenerateJwtToken(user);
-
-            return new AuthorizeResponse(user, token);
+            return null;
         }
 
         public async Task<AuthorizeResponse> Register(RegistrationModel userModel)
@@ -47,7 +54,7 @@
             var response = Authenticate(new AuthorizationModel
             {
                 Email = user.Email,
-                Password = user.Password,
+                Password = BCrypt.Net.BCrypt.HashPassword(user.Password),
             });
 
             return response;

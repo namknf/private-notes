@@ -18,8 +18,6 @@ namespace PrivateNotes.Models
 
         public string Password { get; set; }
 
-        public string PasswordHash { get; set; }
-
         public string Token { get; set; }
 
         public virtual ICollection<Note> Notes { get; set; }
