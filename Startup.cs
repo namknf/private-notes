@@ -34,10 +34,14 @@ namespace PrivateNotes
             options.UseNpgsql(config2));
 
             services.AddScoped<IUserService, UserService>();
-
             services.AddScoped(typeof(IUserRepository<>), typeof(UserRepository<>));
 
+            services.AddScoped<INoteService, NoteService>();
+            services.AddScoped(typeof(INoteRepository<>), typeof(NoteRepository<>));
+
             services.AddAutoMapper(typeof(UserProfile));
+            services.AddAutoMapper(typeof(NoteMapper));
+
             services.AddCors();
             services.AddControllers();
 
