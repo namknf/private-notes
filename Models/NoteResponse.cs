@@ -1,16 +1,17 @@
 ﻿namespace PrivateNotes.Models
 {
     using System;
+    using PrivateNotes.Pages;
 
     public class NoteResponse
     {
-        public NoteResponse(Note model, User user)
+        public NoteResponse(User user, CreateNoteModel data)
         {
-            Id = model.Id;
-            NoteDate = model.NoteDate;
-            Text = model.Text;
-            NoteUserId = model.NoteUserId;
-            NoteUser = model.NoteUser;
+            Id = data.Id;
+            NoteDate = data.NoteDate;
+            Text = data.Text;
+            NoteUserId = data.NoteUserId;
+            NoteUser = user;
         }
 
         public int Id { get; set; }
