@@ -12,7 +12,5 @@
         public DateTime NoteDate { get; set; }
 
         public int? NoteUserId { get; set; }
-
-        public User NoteUser { get; set; }
     }
 }
