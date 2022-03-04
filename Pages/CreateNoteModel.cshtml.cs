@@ -1,19 +1,18 @@
 ﻿namespace PrivateNotes.Pages
 {
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.Extensions.Logging;
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using PrivateNotes.Models;
 
-    public class CreateNoteModel : PageModel
+    public class CreateNoteModel : BaseModel
     {
-        private readonly ILogger<CreateNoteModel> _logger;
+        [Required]
+        public string Text { get; set; }
 
-        public CreateNoteModel(ILogger<CreateNoteModel> logger)
-        {
-            _logger = logger;
-        }
+        public DateTime NoteDate { get; set; }
 
-        public void OnGet()
-        {
-        }
+        public int? NoteUserId { get; set; }
+
+        public User NoteUser { get; set; }
     }
 }
