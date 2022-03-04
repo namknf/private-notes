@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    internal interface INoteRepository<T>
+    public interface INoteRepository<T>
     {
         T GetNoteById(int id);
 
