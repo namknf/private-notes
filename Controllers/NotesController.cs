@@ -1,30 +1,48 @@
 ﻿namespace PrivateNotes.Controllers
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using PrivateNotes.Models;
     using PrivateNotes.Pages;
     using PrivateNotes.Services;
+    using PrivateNotes.Services.Repositories;
 
     [ApiController]
     [Route("notes")]
     public class NotesController : Controller
     {
         private readonly INoteService _noteService;
+        private readonly UserManager<User> _userManager;
+        private readonly NoteRepository<Note> _noteRepository;
 
-        public NotesController(INoteService userService)
+        public NotesController(INoteService userService, UserManager<User> userManager, NoteRepository<Note> noteRepository)
         {
             _noteService = userService;
+            _userManager = userManager;
+            _noteRepository = noteRepository;
+        }
+
+        [Authorize]
+        public IActionResult CreateNote()
+        {
+            return View();
         }
 
         [HttpPost("create")]
-        public IActionResult Create([FromForm] CreateNoteModel model)
+        public async Task<IActionResult> Create([FromBody] CreateNoteModel model)
         {
-            // var response = _noteService.Create(model);
+            var user = await _userManager.GetUserAsync(User);
 
-            // if (response == null)
-            // {
-            //    return BadRequest(new { message = "Username or password is incorrect" });
-            // }
-            return Redirect("~/");
+            var response = _noteService.Create(model, user);
+
+            if (response == null)
+            {
+                return BadRequest(new { message = "Something went wrong..." });
+            }
+
+            return Ok();
         }
     }
 }
