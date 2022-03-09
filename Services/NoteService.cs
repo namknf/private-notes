@@ -1,10 +1,7 @@
 ﻿namespace PrivateNotes.Services
 {
-    using System;
     using System.Threading.Tasks;
     using AutoMapper;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.Extensions.Configuration;
     using PrivateNotes.Models;
     using PrivateNotes.Pages;
     using PrivateNotes.Services.Repositories;
@@ -12,14 +9,11 @@
     public class NoteService : INoteService
     {
         private readonly INoteRepository<Note> _noteRepository;
-        private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
-        private UserManager<User> _userManager;
 
-        public NoteService(INoteRepository<Note> noteRepository, IConfiguration configuration, IMapper mapper)
+        public NoteService(INoteRepository<Note> noteRepository, IMapper mapper)
         {
             _noteRepository = noteRepository;
-            _configuration = configuration;
             _mapper = mapper;
         }
 
@@ -32,6 +26,11 @@
             var response = new NoteResponse(user, model);
 
             return response;
+        }
+
+        public Note GetById(int id)
+        {
+            return _noteRepository.GetNoteById(id);
         }
     }
 }
