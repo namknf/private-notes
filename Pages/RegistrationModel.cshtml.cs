@@ -1,14 +1,14 @@
 namespace PrivateNotes.Pages
 {
     using System.ComponentModel.DataAnnotations;
-    using PrivateNotes.Models;
+    using Microsoft.AspNetCore.Identity;
 
-    public class RegistrationModel : BaseModel
+    public class RegistrationModel : IdentityUser<int>
     {
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public override string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
