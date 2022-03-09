@@ -7,5 +7,7 @@
     public interface INoteService
     {
         Task<NoteResponse> Create(CreateNoteModel note, User user);
+
+        Note GetById(int id);
     }
 }
