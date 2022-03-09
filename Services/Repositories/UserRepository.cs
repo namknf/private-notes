@@ -1,12 +1,14 @@
-﻿namespace PrivateNotes.Services.Repositories
+﻿
+namespace PrivateNotes.Services.Repositories
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Identity;
     using PrivateNotes.Models;
 
     public class UserRepository<T> : IUserRepository<T>
-        where T : BaseModel
+        where T : IdentityUser<int>
     {
         private readonly PrivateNotesContext _context;
 
