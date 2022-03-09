@@ -3,7 +3,7 @@
     using System;
     using PrivateNotes.Pages;
 
-    public class NoteResponse
+    public sealed class NoteResponse
     {
         public NoteResponse(User user, CreateNoteModel data)
         {
@@ -22,6 +22,6 @@
 
         public int? NoteUserId { get; set; }
 
-        public virtual User NoteUser { get; set; }
+        public User NoteUser { get; set; }
     }
 }

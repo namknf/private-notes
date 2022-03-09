@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class AuthorizeResponse
+    public sealed class AuthorizeResponse
     {
         public AuthorizeResponse(User model, string token)
         {
@@ -21,6 +21,6 @@
 
         public string Token { get; set; }
 
-        public virtual ICollection<Note> Notes { get; set; }
+        public ICollection<Note> Notes { get; set; }
     }
 }
