@@ -53,6 +53,8 @@ namespace PrivateNotes
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                     options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
+
+            services.AddIdentity<User, AppRole>().AddEntityFrameworkStores<PrivateNotesContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +77,8 @@ namespace PrivateNotes
             app.UseDefaultFiles();
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseCors(x => x
                 .AllowAnyOrigin()
