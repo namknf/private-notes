@@ -7,21 +7,19 @@
     using PrivateNotes.Models;
     using PrivateNotes.Pages;
     using PrivateNotes.Services;
-    using PrivateNotes.Services.Repositories;
 
     [ApiController]
+    [Authorize]
     [Route("notes")]
     public class NotesController : Controller
     {
         private readonly INoteService _noteService;
         private readonly UserManager<User> _userManager;
-        private readonly NoteRepository<Note> _noteRepository;
 
-        public NotesController(INoteService userService, UserManager<User> userManager, NoteRepository<Note> noteRepository)
+        public NotesController(INoteService userService, UserManager<User> userManager)
         {
             _noteService = userService;
             _userManager = userManager;
-            _noteRepository = noteRepository;
         }
 
         [Authorize]

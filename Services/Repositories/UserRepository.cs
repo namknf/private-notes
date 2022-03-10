@@ -1,5 +1,4 @@
-﻿
-namespace PrivateNotes.Services.Repositories
+﻿namespace PrivateNotes.Services.Repositories
 {
     using System.Collections.Generic;
     using System.Linq;

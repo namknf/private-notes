@@ -1,7 +1,6 @@
 ﻿namespace PrivateNotes.Controllers
 {
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using PrivateNotes.Pages;
     using PrivateNotes.Services;
