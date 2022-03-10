@@ -22,7 +22,7 @@ namespace PrivateNotes.Models
 
         public virtual DbSet<Note> Notes { get; set; }
 
-        public virtual DbSet<User> Users { get; set; }
+        // public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -49,6 +49,7 @@ namespace PrivateNotes.Models
             });
 
             base.OnModelCreating(modelBuilder);
+            modelBuilder.HasDefaultSchema("public");
         }
     }
 }
