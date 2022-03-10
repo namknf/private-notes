@@ -5,9 +5,9 @@
 
     internal interface IUserRepository<T>
     {
-        T GetById(int id);
+        T GetById(string id);
 
-        Task<int> Add(T entity);
+        Task<string> Add(T entity);
 
         List<T> GetAll();
     }

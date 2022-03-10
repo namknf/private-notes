@@ -13,7 +13,7 @@ namespace PrivateNotes.Models
 
         public string Text { get; set; }
 
-        public int NoteUserId { get; set; }
+        public string NoteUserId { get; set; }
 
         public virtual User NoteUser { get; set; }
     }

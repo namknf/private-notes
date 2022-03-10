@@ -10,6 +10,6 @@
 
         Task<AuthorizeResponse> Register(RegistrationModel userModel);
 
-        User GetById(int id);
+        User GetById(string id);
     }
 }

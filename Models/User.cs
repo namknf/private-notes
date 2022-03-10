@@ -8,7 +8,7 @@ namespace PrivateNotes.Models
     /// <summary>
     /// User model.
     /// </summary>
-    public sealed partial class User : IdentityUser<int>
+    public sealed partial class User : IdentityUser
     {
         public User()
         {
@@ -24,7 +24,7 @@ namespace PrivateNotes.Models
         public ICollection<Note> Notes { get; set; }
     }
 
-    public class AppRole : IdentityRole<int>
+    public class AppRole : IdentityRole
     {
     }
 }

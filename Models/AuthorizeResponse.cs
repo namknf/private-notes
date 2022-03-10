@@ -13,7 +13,7 @@
             Token = token;
         }
 
-        public int Id { get; init; }
+        public string Id { get; init; }
 
         public string Email { get; set; }
 

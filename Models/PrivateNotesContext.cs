@@ -1,4 +1,6 @@
-﻿#nullable disable
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+#nullable disable
 
 namespace PrivateNotes.Models
 {
@@ -7,7 +9,7 @@ namespace PrivateNotes.Models
     /// <summary>
     /// db-context.
     /// </summary>
-    public partial class PrivateNotesContext : DbContext
+    public partial class PrivateNotesContext : IdentityDbContext
     {
         public PrivateNotesContext()
         {
@@ -46,9 +48,7 @@ namespace PrivateNotes.Models
                     .HasForeignKey(d => d.NoteUserId);
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

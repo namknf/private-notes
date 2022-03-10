@@ -60,7 +60,7 @@
             return response;
         }
 
-        public User GetById(int id)
+        public User GetById(string id)
         {
             return _userRepository.GetById(id);
         }

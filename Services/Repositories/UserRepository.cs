@@ -8,7 +8,7 @@ namespace PrivateNotes.Services.Repositories
     using PrivateNotes.Models;
 
     public class UserRepository<T> : IUserRepository<T>
-        where T : IdentityUser<int>
+        where T : IdentityUser
     {
         private readonly PrivateNotesContext _context;
 
@@ -17,7 +17,7 @@ namespace PrivateNotes.Services.Repositories
             _context = context;
         }
 
-        public async Task<int> Add(T entity)
+        public async Task<string> Add(T entity)
         {
             var result = await _context.Set<T>().AddAsync(entity);
 
@@ -26,7 +26,7 @@ namespace PrivateNotes.Services.Repositories
             return result.Entity.Id;
         }
 
-        public T GetById(int id)
+        public T GetById(string id)
         {
             var result = _context.Set<T>().FirstOrDefault(x => x.Id == id);
 
