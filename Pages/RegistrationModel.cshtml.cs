@@ -3,7 +3,7 @@ namespace PrivateNotes.Pages
     using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Identity;
 
-    public class RegistrationModel : IdentityUser<int>
+    public class RegistrationModel : IdentityUser
     {
         [Required]
         [EmailAddress]

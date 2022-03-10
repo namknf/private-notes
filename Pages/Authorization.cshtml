@@ -11,16 +11,16 @@
     <div asp-validation-summary="ModelOnly"></div>
     <div>
         <label asp-for="Email"></label><br />
-        <input asp-for="Email" />
+        <input class="form-control" asp-for="Email" />
         <span asp-validation-for="Email"></span>
     </div>
     <div>
         <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
+        <input class="form-control" asp-for="Password" />
         <span asp-validation-for="Password"></span>
     </div>
     <div>
-        <input type="submit" value="LOGIN" />
+        <input type="submit" value="LOGIN" class="btn btn-dark"/>
     </div>
 </form>
 
