@@ -9,7 +9,7 @@ namespace PrivateNotes.Models
     /// <summary>
     /// db-context.
     /// </summary>
-    public partial class PrivateNotesContext : IdentityDbContext
+    public partial class PrivateNotesContext : DbContext
     {
         public PrivateNotesContext()
         {
@@ -21,6 +21,8 @@ namespace PrivateNotes.Models
         }
 
         public virtual DbSet<Note> Notes { get; set; }
+
+        public virtual DbSet<User> Users { get; set; }
 
         // public virtual DbSet<User> Users { get; set; }
 
