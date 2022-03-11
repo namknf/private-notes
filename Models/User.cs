@@ -23,8 +23,4 @@ namespace PrivateNotes.Models
 
         public ICollection<Note> Notes { get; set; }
     }
-
-    public class AppRole : IdentityRole
-    {
-    }
 }
