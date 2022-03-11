@@ -1,13 +1,13 @@
 namespace PrivateNotes
 {
     using System;
-    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using System.Security.Claims;
     using PrivateNotes.Helpers;
     using PrivateNotes.Models;
     using PrivateNotes.Services;
@@ -45,16 +45,19 @@ namespace PrivateNotes
             services.AddCors();
             services.AddControllers();
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
+            services.AddAuthentication("Cookie")
+                .AddCookie("Cookie", config =>
                 {
-                    options.Cookie.HttpOnly = true;
-                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    config.LoginPath = "/Index";
                 });
 
-            services.AddIdentity<User, AppRole>().AddEntityFrameworkStores<PrivateNotesContext>();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("authorized", builder =>
+                {
+                    builder.RequireClaim(ClaimTypes.Role, "authorized");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
