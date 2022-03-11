@@ -9,7 +9,6 @@
     using PrivateNotes.Services;
 
     [ApiController]
-    [Authorize]
     [Route("notes")]
     public class NotesController : Controller
     {
@@ -22,13 +21,14 @@
             _userManager = userManager;
         }
 
-        [Authorize]
+        [Authorize(Roles = "authorized")]
         public IActionResult CreateNote()
         {
             return View();
         }
 
         [HttpPost("create")]
+        [Authorize(Roles = "authorized")]
         public async Task<IActionResult> Create([FromBody] CreateNoteModel model)
         {
             var user = await _userManager.GetUserAsync(User);
