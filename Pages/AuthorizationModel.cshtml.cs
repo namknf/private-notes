@@ -2,7 +2,9 @@ namespace PrivateNotes.Pages
 {
     using System.ComponentModel.DataAnnotations;
     using PrivateNotes.Models;
+    using Microsoft.AspNetCore.Authorization;
 
+    [Authorize(Roles = "[AllowAnonymous]")]
     public class AuthorizationModel : BaseModel
     {
         [Required(ErrorMessage = "Email address not specified")]

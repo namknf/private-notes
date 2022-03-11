@@ -2,9 +2,11 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using PrivateNotes.Models;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.AspNetCore.Authorization;
 
-    public class CreateNoteModel : BaseModel
+    [Authorize(Roles = "authorized")]
+    public class CreateNoteModel : PageModel
     {
         [Required]
         public string Text { get; set; }
@@ -12,5 +14,7 @@
         public DateTime NoteDate { get; set; }
 
         public int? NoteUserId { get; set; }
+
+        public int Id { get; set; }
     }
 }
