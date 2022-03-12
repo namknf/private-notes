@@ -21,14 +21,14 @@
             _userManager = userManager;
         }
 
-        [Authorize(Roles = "authorized")]
+        [Authorize(Policy = "authorized")]
         public IActionResult CreateNote()
         {
             return View();
         }
 
         [HttpPost("create")]
-        [Authorize(Roles = "authorized")]
+        [Authorize(Policy = "authorized")]
         public async Task<IActionResult> Create([FromBody] CreateNoteModel model)
         {
             var user = await _userManager.GetUserAsync(User);
