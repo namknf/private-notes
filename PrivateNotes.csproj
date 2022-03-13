@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
 	  <CodeAnalysisRuleSet>common.ruleset</CodeAnalysisRuleSet>
+    <UserSecretsId>8c65ceef-8a65-41a4-8710-fb90895b7ed5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
