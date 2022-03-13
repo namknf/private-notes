@@ -1,4 +1,4 @@
-﻿namespace PrivateNotes
+﻿namespace PrivateNotes.Mappers
 {
     using AutoMapper;
     using PrivateNotes.Models;

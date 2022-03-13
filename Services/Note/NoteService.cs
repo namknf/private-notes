@@ -1,10 +1,10 @@
-﻿namespace PrivateNotes.Services
+﻿namespace PrivateNotes.Services.Note
 {
     using System.Threading.Tasks;
     using AutoMapper;
     using PrivateNotes.Models;
     using PrivateNotes.Pages;
-    using PrivateNotes.Services.Repositories;
+    using PrivateNotes.Repositories.Note;
 
     public class NoteService : INoteService
     {
@@ -21,7 +21,7 @@
         {
             var note = _mapper.Map<Note>(model);
 
-            var addedUser = await _noteRepository.Add(note);
+            await _noteRepository.Add(note);
 
             var response = new NoteResponse(user, model);
 

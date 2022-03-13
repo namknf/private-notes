@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿#nullable disable
 
-#nullable disable
-
-namespace PrivateNotes.Models
+namespace PrivateNotes.Data
 {
     using Microsoft.EntityFrameworkCore;
+    using PrivateNotes.Models;
 
     /// <summary>
     /// db-context.
@@ -23,8 +22,6 @@ namespace PrivateNotes.Models
         public virtual DbSet<Note> Notes { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
-
-        // public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

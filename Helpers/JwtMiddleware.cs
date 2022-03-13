@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
-    using PrivateNotes.Services;
+    using PrivateNotes.Services.Auth;
 
     public class JwtMiddleware
     {
@@ -21,19 +21,19 @@
             _configuration = configuration;
         }
 
-        public async Task Invoke(HttpContext context, IUserService userService)
+        public async Task Invoke(HttpContext context, IAuthService authService)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             if (token != null)
             {
-                AttachUserToContext(context, userService, token);
+                AttachUserToContext(context, authService, token);
             }
 
             await _next(context);
         }
 
-        public void AttachUserToContext(HttpContext context, IUserService userService, string token)
+        public void AttachUserToContext(HttpContext context, IAuthService userService, string token)
         {
             try
             {

@@ -1,4 +1,4 @@
-﻿namespace PrivateNotes.Services.Repositories
+﻿namespace PrivateNotes.Repositories.Note
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

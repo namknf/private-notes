@@ -1,4 +1,4 @@
-﻿namespace PrivateNotes.Services
+﻿namespace PrivateNotes.Services.Note
 {
     using System.Threading.Tasks;
     using PrivateNotes.Models;

@@ -1,24 +1,24 @@
 ﻿namespace PrivateNotes.Controllers
 {
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Authorization;
-    using PrivateNotes.Pages;
-    using PrivateNotes.Services;
     using System.Collections.Generic;
     using System.Security.Claims;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using PrivateNotes.Pages;
+    using PrivateNotes.Services.Auth;
 
     [ApiController]
     [Authorize]
     [Route("users")]
-    public class UsersController : Controller
+    public class AccountController : Controller
     {
-        private readonly IUserService _userService;
+        private readonly IAuthService _authService;
 
-        public UsersController(IUserService userService)
+        public AccountController(IAuthService authService)
         {
-            _userService = userService;
+            _authService = authService;
         }
 
         [AllowAnonymous]
@@ -31,7 +31,7 @@
         [AllowAnonymous]
         public IActionResult Authenticate([FromForm] AuthorizationModel model)
         {
-            var response = _userService.Authenticate(model);
+            var response = _authService.Authenticate(model);
 
             if (response == null)
             {
@@ -45,7 +45,7 @@
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromForm] RegistrationModel userModel)
         {
-            var response = await _userService.Register(userModel);
+            var response = await _authService.Register(userModel);
 
             if (response == null)
             {
@@ -54,8 +54,8 @@
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name,userModel.Email),
-                new Claim(ClaimTypes.Role,"Administrator")
+                new Claim(ClaimTypes.Name, userModel.Email),
+                new Claim(ClaimTypes.Role, "Administrator"),
             };
 
             var claimIdentity = new ClaimsIdentity(claims, "Cookie");

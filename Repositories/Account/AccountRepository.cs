@@ -1,21 +1,22 @@
-﻿namespace PrivateNotes.Services.Repositories
+﻿namespace PrivateNotes.Repositories.Account
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using PrivateNotes.Models;
+    using Microsoft.AspNetCore.Identity;
+    using PrivateNotes.Data;
 
-    public class NoteRepository<T> : INoteRepository<T>
-        where T : BaseModel
+    public class AccountRepository<T> : IAccountRepository<T>
+        where T : IdentityUser
     {
         private readonly PrivateNotesContext _context;
 
-        public NoteRepository(PrivateNotesContext context)
+        public AccountRepository(PrivateNotesContext context)
         {
             _context = context;
         }
 
-        public async Task<int> Add(T entity)
+        public async Task<string> Add(T entity)
         {
             var result = await _context.Set<T>().AddAsync(entity);
 
@@ -24,7 +25,7 @@
             return result.Entity.Id;
         }
 
-        public T GetNoteById(int id)
+        public T GetById(string id)
         {
             var result = _context.Set<T>().FirstOrDefault(x => x.Id == id);
 

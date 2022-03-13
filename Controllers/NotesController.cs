@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
     using PrivateNotes.Models;
     using PrivateNotes.Pages;
-    using PrivateNotes.Services;
+    using PrivateNotes.Services.Note;
 
     [ApiController]
     [Route("notes")]

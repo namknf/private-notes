@@ -1,17 +1,20 @@
 namespace PrivateNotes
 {
     using System;
+    using System.Security.Claims;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using System.Security.Claims;
+    using PrivateNotes.Data;
     using PrivateNotes.Helpers;
-    using PrivateNotes.Models;
-    using PrivateNotes.Services;
-    using PrivateNotes.Services.Repositories;
+    using PrivateNotes.Mappers;
+    using PrivateNotes.Repositories.Account;
+    using PrivateNotes.Repositories.Note;
+    using PrivateNotes.Services.Auth;
+    using PrivateNotes.Services.Note;
 
     public class Startup
     {
@@ -33,8 +36,8 @@ namespace PrivateNotes
             services.AddDbContext<PrivateNotesContext>(options =>
             options.UseNpgsql(config2));
 
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped(typeof(IUserRepository<>), typeof(UserRepository<>));
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped(typeof(IAccountRepository<>), typeof(AccountRepository<>));
 
             services.AddScoped<INoteService, NoteService>();
             services.AddScoped(typeof(INoteRepository<>), typeof(NoteRepository<>));

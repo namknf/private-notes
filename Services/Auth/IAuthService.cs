@@ -1,10 +1,10 @@
-﻿namespace PrivateNotes.Services
+﻿namespace PrivateNotes.Services.Auth
 {
     using System.Threading.Tasks;
     using PrivateNotes.Models;
     using PrivateNotes.Pages;
 
-    public interface IUserService
+    public interface IAuthService
     {
         AuthorizeResponse Authenticate(AuthorizationModel model);
 

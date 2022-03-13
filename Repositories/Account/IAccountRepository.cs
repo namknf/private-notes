@@ -1,9 +1,9 @@
-﻿namespace PrivateNotes.Services.Repositories
+﻿namespace PrivateNotes.Repositories.Account
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    internal interface IUserRepository<T>
+    internal interface IAccountRepository<T>
     {
         T GetById(string id);
 
