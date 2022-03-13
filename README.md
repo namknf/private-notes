@@ -29,3 +29,13 @@ _Frontend:_
   `Microsoft.EntityFrameworkCore.Tools` (для подключения базы данных и работы с ней)
 - `BCrypt.Net-Next` (для одностороннего шифрования данных)
 - `AutoMapper.Extensions.MicrosoftDependencyInjection` (для проецирования одной модели на другую)
+
+Также использовала Identity, Claims (для ограничения просмотра контента)
+
+### Запуск приложения
+
+- Скачать доступный код или же выполнить команду `git clone https://github.com/namknf/private-notes.git`
+- Выполнить команду `docker-compose build`
+- Выполнить команду `docker-compose up`
+- В браузере ввести адрес localhost:8000/
+- После просмотра ввести команду `docker-compose down -v`

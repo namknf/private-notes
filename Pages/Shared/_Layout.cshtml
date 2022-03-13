@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Authorization
+@using System.Security.Claims
 @inject IAuthorizationService _authorizationService
 @attribute [Authorize]
 <!DOCTYPE html>
@@ -21,11 +22,8 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @{
-                            var response = await _authorizationService.AuthorizeAsync(User, "authorized");
-                        }
 
-                        @if (response.Succeeded)
+                        @if (User.IsInRole("authorized"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/CreateNote">Create note</a>
@@ -37,7 +35,7 @@
                                 <button class="btn btn-dark" asp-controller="Account" asp-action="LogOut">LOGOUT</button>
                             </div>
                         }
-                        @if (!response.Succeeded)
+                        @if (!User.IsInRole("authorized"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Registration">Register</a>

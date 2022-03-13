@@ -1,4 +1,6 @@
-﻿#nullable disable
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+#nullable disable
 
 namespace PrivateNotes.Data
 {
@@ -8,7 +10,7 @@ namespace PrivateNotes.Data
     /// <summary>
     /// db-context.
     /// </summary>
-    public partial class PrivateNotesContext : DbContext
+    public partial class PrivateNotesContext : IdentityDbContext<User>
     {
         public PrivateNotesContext()
         {
@@ -21,7 +23,7 @@ namespace PrivateNotes.Data
 
         public virtual DbSet<Note> Notes { get; set; }
 
-        public virtual DbSet<User> Users { get; set; }
+        public override DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

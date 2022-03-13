@@ -1,16 +1,17 @@
 ﻿namespace PrivateNotes.Services.Auth
 {
+    using BCryptNet = BCrypt.Net.BCrypt;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.Extensions.Configuration;
-    using PrivateNotes.Data;
     using PrivateNotes.Helpers;
     using PrivateNotes.Models;
     using PrivateNotes.Pages;
     using PrivateNotes.Repositories.Account;
-    using BCryptNet = BCrypt.Net.BCrypt;
+    using PrivateNotes.Data;
 
     internal class AuthService : IAuthService
     {

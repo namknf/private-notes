@@ -11,7 +11,7 @@
 
     [ApiController]
     [Authorize]
-    [Route("users")]
+    [Route("account")]
     public class AccountController : Controller
     {
         private readonly IAuthService _authService;
@@ -29,7 +29,7 @@
 
         [HttpPost("authenticate")]
         [AllowAnonymous]
-        public IActionResult Authenticate([FromForm] AuthorizationModel model)
+        public async Task<IActionResult> Authenticate([FromForm] AuthorizationModel model)
         {
             var response = _authService.Authenticate(model);
 
@@ -37,6 +37,15 @@
             {
                 return BadRequest(new { message = "Username or password is incorrect" });
             }
+
+            var claims = new List<Claim>
+            {
+                new (ClaimTypes.Role,"authorized"),
+            };
+
+            var claimIdentity = new ClaimsIdentity(claims, "Cookie");
+            var claimPrincipal = new ClaimsPrincipal(claimIdentity);
+            await HttpContext.SignInAsync("Cookie", claimPrincipal);
 
             return Redirect("~/");
         }
@@ -51,16 +60,6 @@
             {
                 return BadRequest(new { message = "Didn't register!" });
             }
-
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, userModel.Email),
-                new Claim(ClaimTypes.Role, "Administrator"),
-            };
-
-            var claimIdentity = new ClaimsIdentity(claims, "Cookie");
-            var claimPrincipal = new ClaimsPrincipal(claimIdentity);
-            await HttpContext.SignInAsync("Cookie", claimPrincipal);
 
             return Redirect("~/");
         }

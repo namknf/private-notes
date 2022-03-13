@@ -1,13 +1,15 @@
 namespace PrivateNotes.Pages
 {
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.AspNetCore.Authorization;
+    using PrivateNotes.Models;
+    using System.ComponentModel.DataAnnotations;
 
-    [Authorize(Roles = "authorized")]
-    public class MyNotesModel : PageModel
+    public class MyNotesModel : BaseModel
     {
-        public void OnGet()
-        {
-        }
+        [DataType(DataType.MultilineText)]
+        public string Text { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        public string Date { get; set; }
     }
 }

@@ -1,14 +1,15 @@
 ﻿namespace PrivateNotes.Controllers
 {
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using PrivateNotes.Models;
     using PrivateNotes.Pages;
     using PrivateNotes.Services.Note;
+    using Microsoft.AspNetCore.Authorization;
 
     [ApiController]
+    [Authorize]
     [Route("notes")]
     public class NotesController : Controller
     {
@@ -20,15 +21,14 @@
             _noteService = userService;
             _userManager = userManager;
         }
-
-        [Authorize(Policy = "authorized")]
+        
         public IActionResult CreateNote()
         {
             return View();
         }
 
         [HttpPost("create")]
-        [Authorize(Policy = "authorized")]
+        [Authorize(Policy = "Authorized")]
         public async Task<IActionResult> Create([FromBody] CreateNoteModel model)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -41,6 +41,13 @@
             }
 
             return Ok();
+        }
+
+        [HttpGet]
+        public Task<IActionResult> GetNotes()
+        {
+            var notes = _noteService.GetAll();
+            return Task.FromResult<IActionResult>(Json(notes));
         }
     }
 }

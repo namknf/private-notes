@@ -1,4 +1,6 @@
-﻿namespace PrivateNotes.Services.Note
+﻿using System.Collections.Generic;
+
+namespace PrivateNotes.Services.Note
 {
     using System.Threading.Tasks;
     using PrivateNotes.Models;
@@ -9,5 +11,7 @@
         Task<NoteResponse> Create(CreateNoteModel note, User user);
 
         Note GetById(int id);
+
+        List<Note> GetAll();
     }
 }

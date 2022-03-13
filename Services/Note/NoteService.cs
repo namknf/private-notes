@@ -1,4 +1,6 @@
-﻿namespace PrivateNotes.Services.Note
+﻿using System.Collections.Generic;
+
+namespace PrivateNotes.Services.Note
 {
     using System.Threading.Tasks;
     using AutoMapper;
@@ -31,6 +33,11 @@
         public Note GetById(int id)
         {
             return _noteRepository.GetNoteById(id);
+        }
+
+        public List<Note> GetAll()
+        {
+           return _noteRepository.GetAll();
         }
     }
 }

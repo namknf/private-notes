@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Identity;
+using PrivateNotes.Models;
+
 namespace PrivateNotes
 {
     using System;
@@ -28,6 +31,20 @@ namespace PrivateNotes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication("Cookie")
+                .AddCookie("Cookie", config =>
+                {
+                    config.LoginPath = "/Authorization";
+                    config.AccessDeniedPath = "/Index";
+                });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Authorized", builder =>
+                {
+                    builder.RequireClaim(ClaimTypes.Role, "authorized");
+                });
+            });
             services.AddRazorPages();
 
             var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
@@ -45,22 +62,11 @@ namespace PrivateNotes
             services.AddAutoMapper(typeof(UserProfile));
             services.AddAutoMapper(typeof(NoteMapper));
 
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<PrivateNotesContext>();
+
             services.AddCors();
             services.AddControllers();
-
-            services.AddAuthentication("Cookie")
-                .AddCookie("Cookie", config =>
-                {
-                    config.LoginPath = "/Index";
-                });
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("authorized", builder =>
-                {
-                    builder.RequireClaim(ClaimTypes.Role, "authorized");
-                });
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,6 +91,9 @@ namespace PrivateNotes
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
+
+            app.UseCookiePolicy();
 
             app.UseCors(x => x
                 .AllowAnyOrigin()
