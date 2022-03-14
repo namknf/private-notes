@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-	  <CodeAnalysisRuleSet>common.ruleset</CodeAnalysisRuleSet>
     <UserSecretsId>8c65ceef-8a65-41a4-8710-fb90895b7ed5</UserSecretsId>
   </PropertyGroup>
 
@@ -20,7 +19,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
-	  <!--<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.376" PrivateAssets="All" />-->
   </ItemGroup>
 
 </Project>
